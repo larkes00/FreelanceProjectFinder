@@ -6,12 +6,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "project_skills")
-public class ProjectSkill {
+@Table(name = "mentor_skills")
+public class MentorSkill {
     @Id
     @Column(name = "skill_id")
     private long skillId;
     @Id
-    @Column(name = "project_id")
-    private long projectId;
+    @Column(name = "mentor_id")
+    private long mentorId;
 }
