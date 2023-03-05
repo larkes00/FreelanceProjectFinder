@@ -1,14 +1,16 @@
 package com.custom.FreelanceProjectFinder.model;
 
-import lombok.*;
+import javax.persistence.*;
 
-import javax.persistence.Table;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
+@Entity
 @Table(name = "skills")
 public class Skill {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "skill_id")
+    private long skillId;
+    @Column
+    private String type;
+    @Column
+    private String name;
 }

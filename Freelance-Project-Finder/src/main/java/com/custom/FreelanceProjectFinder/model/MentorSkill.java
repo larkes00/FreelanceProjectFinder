@@ -7,12 +7,12 @@
 //import java.io.Serializable;
 //
 //@Entity
-//@Table(name = "project_skills")
-//public class ProjectSkill implements Serializable {
+//@Table(name = "mentor_skills")
+//public class MentorSkill implements Serializable {
 //    @Id
 //    @Column(name = "skill_id")
 //    private Long skillId;
 //    @Id
-//    @Column(name = "project_id")
-//    private Long projectId;
+//    @Column(name = "mentor_id")
+//    private Long mentorId;
 //}
