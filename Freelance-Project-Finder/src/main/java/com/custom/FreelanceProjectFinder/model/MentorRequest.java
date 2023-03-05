@@ -2,6 +2,7 @@ package com.custom.FreelanceProjectFinder.model;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name = "mentor_requests")
 public class MentorRequest {
