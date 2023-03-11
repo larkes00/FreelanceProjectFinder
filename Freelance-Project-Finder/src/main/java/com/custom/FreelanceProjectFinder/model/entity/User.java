@@ -35,6 +35,8 @@ public class User implements UserDetails {
     private String password;
     @OneToMany(mappedBy = "user")
     private Set<UserRequest> userRequests = new HashSet<>();
+    @OneToMany(mappedBy = "owner")
+    private Set<Project> projects = new HashSet<>();
     @OneToOne
     @JoinColumn(name = "mentor_id", referencedColumnName = "user_id")
     private Mentor mentor;

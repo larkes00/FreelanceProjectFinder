@@ -16,6 +16,6 @@ public class ProjectDto {
     private long ownerId;
 
     public Project convertDtoToEntity() {
-        return new Project(getProjectId(), getTitle(), getOpenedDescription(), getClosedDescription(), getStatus(), getBudget(), getOwnerId(), null, null, null);
+        return new Project(getProjectId(), getTitle(), getOpenedDescription(), getClosedDescription(), getStatus(), getBudget(), getOwnerId(), null, null, null, null);
     }
 }

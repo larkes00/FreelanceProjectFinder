@@ -12,6 +12,6 @@ public class UserDto {
     private String password;
 
     public User convertDtoToEntity() {
-        return new User(getUserId(), getFirstName(), getLastName(), getEmail(), getPassword(), null, null);
+        return new User(getUserId(), getFirstName(), getLastName(), getEmail(), getPassword(), null, null, null);
     }
 }

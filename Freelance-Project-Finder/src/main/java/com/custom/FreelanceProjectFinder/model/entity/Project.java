@@ -32,7 +32,7 @@ public class Project implements Serializable {
     private String status;
     @Column
     private BigDecimal budget;
-    @Column(name = "owner_id")
+    @Column(name = "owner_id", insertable = false, updatable = false)
     private long ownerId;
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
@@ -45,4 +45,7 @@ public class Project implements Serializable {
     private Set<UserRequest> userRequests = new HashSet<>();
     @OneToMany(mappedBy = "mentor")
     private Set<MentorRequest> mentorRequests = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "owner_id", nullable = false)
+    private User owner;
 }
