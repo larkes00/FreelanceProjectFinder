@@ -1,6 +1,8 @@
 package com.custom.FreelanceProjectFinder.config;
 
+import com.custom.FreelanceProjectFinder.repository.UserRepository;
 import com.custom.FreelanceProjectFinder.service.AuthService;
+import com.custom.FreelanceProjectFinder.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,23 +22,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/", "/login", "/registration").permitAll()
-                    .anyRequest().authenticated()
+                .antMatchers("/", "/login", "/registration").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                    .loginPage("/login")
-                    .usernameParameter("email")
-                    .defaultSuccessUrl("/")
-                    .permitAll()
+                .loginPage("/login")
+                .usernameParameter("email")
+                .defaultSuccessUrl("/")
+                .permitAll()
                 .and()
                 .logout()
-                    .permitAll()
-                .and().csrf().disable(); // we'll enable this in a later blog post
-    }
-
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+                .permitAll()
+                .and().csrf().disable();
     }
 
     @Autowired
@@ -44,5 +41,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth
                 .userDetailsService(authService)
                 .passwordEncoder(passwordEncoder());
+    }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

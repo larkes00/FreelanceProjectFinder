@@ -1,11 +1,13 @@
 package com.custom.FreelanceProjectFinder.controller;
 
-import com.custom.FreelanceProjectFinder.model.User;
+import com.custom.FreelanceProjectFinder.model.dto.UserDto;
+import com.custom.FreelanceProjectFinder.model.entity.User;
 import com.custom.FreelanceProjectFinder.service.UserService;
+import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -15,31 +17,34 @@ public class AuthController {
     private UserService userService;
 
     @GetMapping("/login")
-    public String loginPage() {
+    public String loginPage(Authentication authentication, Model model) {
+        if (authentication != null) {
+            model.addAttribute("isAuth", true);
+        }
         return "login";
     }
 
     @PostMapping("/login")
-    public String login(User user, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "login";
-        }
+    public String login(User user, Model model) {
         return "index";
     }
 
     @GetMapping("/registration")
-    public String registrationPage() {
+    public String registrationPage(Authentication authentication, Model model) {
+        if (authentication != null) {
+            model.addAttribute("isAuth", true);
+        }
         return "registration";
     }
 
     @PostMapping("/registration")
-    public String registration(User user, Model model) {
-        userService.create(user);
+    public String registration(UserDto userDto, Model model) {
+        try {
+            userService.create(userDto.convertDtoToEntity());
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", e.getMessage());
+            return "registration";
+        }
         return "redirect:/";
-    }
-
-    private static class LoginForm {
-        public String email;
-        public String password;
     }
 }

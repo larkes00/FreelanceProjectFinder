@@ -1,6 +1,6 @@
 package com.custom.FreelanceProjectFinder.repository;
 
-import com.custom.FreelanceProjectFinder.model.User;
+import com.custom.FreelanceProjectFinder.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

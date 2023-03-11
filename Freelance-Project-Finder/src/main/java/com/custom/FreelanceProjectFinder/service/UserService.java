@@ -1,12 +1,11 @@
 package com.custom.FreelanceProjectFinder.service;
 
-import com.custom.FreelanceProjectFinder.model.User;
+import com.custom.FreelanceProjectFinder.model.entity.User;
 import com.custom.FreelanceProjectFinder.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,9 +34,9 @@ public class UserService {
         }
     }
 
-    public void create(User user) {
+    public void create(User user) throws Exception {
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
-
+            throw new Exception("Пошта має бути унікальною");
         } else {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userRepository.save(user);
@@ -45,8 +44,7 @@ public class UserService {
     }
 
     public User update(User user) {
-//        return userRepository.save(user);
-        return new User();
+        return userRepository.save(user);
     }
 
     public void delete(User user) {
