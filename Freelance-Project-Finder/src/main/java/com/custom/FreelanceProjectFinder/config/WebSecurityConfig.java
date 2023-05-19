@@ -1,7 +1,5 @@
 package com.custom.FreelanceProjectFinder.config;
 
-import com.custom.FreelanceProjectFinder.repository.UserRepository;
-import com.custom.FreelanceProjectFinder.service.AuthService;
 import com.custom.FreelanceProjectFinder.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    private AuthService authService;
+    private UserService userService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -39,12 +37,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .userDetailsService(authService)
+                .userDetailsService(username -> userService.getByEmail(username))
                 .passwordEncoder(passwordEncoder());
     }
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
+    public static BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

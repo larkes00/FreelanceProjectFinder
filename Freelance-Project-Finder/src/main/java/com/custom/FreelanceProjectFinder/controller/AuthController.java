@@ -3,7 +3,6 @@ package com.custom.FreelanceProjectFinder.controller;
 import com.custom.FreelanceProjectFinder.model.dto.UserDto;
 import com.custom.FreelanceProjectFinder.model.entity.User;
 import com.custom.FreelanceProjectFinder.service.UserService;
-import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
