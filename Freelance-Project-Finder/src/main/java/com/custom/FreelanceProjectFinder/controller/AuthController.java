@@ -17,9 +17,6 @@ public class AuthController {
 
     @GetMapping("/login")
     public String loginPage(Authentication authentication, Model model) {
-        if (authentication != null) {
-            model.addAttribute("isAuth", true);
-        }
         return "login";
     }
 
@@ -30,9 +27,6 @@ public class AuthController {
 
     @GetMapping("/registration")
     public String registrationPage(Authentication authentication, Model model) {
-        if (authentication != null) {
-            model.addAttribute("isAuth", true);
-        }
         return "registration";
     }
 

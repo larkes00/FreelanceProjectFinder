@@ -23,9 +23,6 @@ public class ProjectController {
 
     @GetMapping("/")
     public String mainPage(Authentication authentication, Model model) {
-        if (authentication != null) {
-            model.addAttribute("isAuth", true);
-        }
         model.addAttribute("projects", projectService.getAll());
         return "index";
     }
@@ -40,9 +37,6 @@ public class ProjectController {
 
     @GetMapping("/projects/create")
     public String createProjectPage(Authentication authentication, Model model) {
-        if (authentication != null) {
-            model.addAttribute("isAuth", true);
-        }
         return "createProject";
     }
 }
